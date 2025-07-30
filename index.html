@@ -7,8 +7,7 @@
     <title>Cold Reach Out</title>
     <link rel="shortcut icon" href="downl.png" type="image/x-icon" />
 
-    <!-- Google Sign-In API -->
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
 
     <!-- Font Awesome for icons -->
     <link
@@ -319,64 +318,9 @@
         color: #3b82f6;
       }
 
-      /* Google Sign-In Button */
-      .google-signin-btn {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 8px;
-        padding: 10px 16px;
-        font-size: 14px;
-        font-weight: 500;
-        color: #374151;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
 
-      .google-signin-btn:hover {
-        background: rgba(255, 255, 255, 1);
-        transform: translateY(-1px);
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-      }
 
-      .google-signin-btn i {
-        font-size: 16px;
-        color: #ea4335;
-      }
 
-      /* User profile section */
-      .user-profile {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 8px;
-        padding: 10px 16px;
-        font-size: 14px;
-        font-weight: 500;
-        color: #374151;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        max-width: 200px;
-      }
-
-      .user-profile img {
-        width: 24px;
-        height: 24px;
-        border-radius: 50%;
-        object-fit: cover;
-      }
-
-      .user-profile .user-name {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
 
       /* History Modal */
       .history-modal {
@@ -509,9 +453,7 @@
           gap: 10px;
         }
 
-        .history-btn,
-        .google-signin-btn,
-        .user-profile {
+        .history-btn {
           padding: 8px 12px;
           font-size: 12px;
         }
@@ -531,15 +473,8 @@
     <!-- Top Header with History and Sign-In -->
  
 
-      <div id="user-profile" class="user-profile" style="display: none">
-        <img id="user-avatar" src="" alt="User Avatar" />
-        <span id="user-name" class="user-name"></span>
-      </div>
 
-      <a href="#" id="history-btn" class="history-btn" style="display: none">
-        <i class="fas fa-history"></i>
-        History
-      </a>
+
     </div>
 
     <div class="container">
@@ -597,8 +532,7 @@
     </div>
 
     <script>
-      // Global variables for authentication and history
-      let currentUser = null;
+      // Global variables for history
       let outreachHistory = [];
 
       document.addEventListener("DOMContentLoaded", function () {
@@ -606,8 +540,8 @@
         const whatsappBtn = document.getElementById("whatsapp-btn");
         const callBtn = document.getElementById("call-btn");
         const emailBtn = document.getElementById("email-btn");
-        const googleSigninBtn = document.getElementById("google-signin-btn");
-        const userProfile = document.getElementById("user-profile");
+
+
         const historyBtn = document.getElementById("history-btn");
         const historyModal = document.getElementById("history-modal");
         const closeHistoryBtn = document.getElementById("close-history");
@@ -617,6 +551,7 @@
 
         function formatNumber(input) {
           let cleaned = input.replace(/\D/g, "");
+          let hasCountryCode = false;
 
           // Remove common country codes if they exist
           const commonCodes = [
@@ -798,6 +733,7 @@
           for (let code of commonCodes) {
             if (cleaned.startsWith(code)) {
               cleaned = cleaned.substring(code.length);
+              hasCountryCode = true;
               break;
             }
           }
@@ -807,7 +743,13 @@
             cleaned = cleaned.substring(1);
           }
 
-          return userCountryCode + cleaned;
+          // If user provided a country code, return with + prefix
+          // If no country code was provided, use the detected country code
+          if (hasCountryCode) {
+            return "+" + input.replace(/\D/g, "");
+          } else {
+            return userCountryCode + cleaned;
+          }
         }
 
         function isValidEmail(email) {
@@ -828,12 +770,13 @@
 I noticed that your business doesn't have a website, and I'd love to assist you in creating one. My name is Santosh, and I specialize in designing modern, user-friendly websites that enhance online presence and increase sales.
 
 We Have the most Affordable Plans:
-1. 6,900/- or 2. 12,900/-
+1. 5,900/- or 2. 11,900/-
 
 Let's connect for a quick call or Google Meet to discuss how I can help elevate your business. I look forward to hearing from you!
 
 Best regards,
-Santosh`);
+Santosh
+weblift1.netlify.app`);
 
               whatsappBtn.href = "#";
               callBtn.href = "#";
@@ -845,12 +788,13 @@ Santosh`);
                 encodeURIComponent(`Hi, I noticed that your business doesn't have a website, and I'd love to assist you in creating one. My name is Santosh, and I specialize in designing modern, user-friendly websites that enhance online presence and increase sales.
 
 We Have the most Affordable Plans:
-1. 6,900/- or 2. 12,900/-
+1. 5,900/- or 2. 11,900/-
 
 Let's connect for a quick call or Google Meet to discuss how I can help elevate your business. I look forward to hearing from you!
 
 Best regards,
-Santosh`);
+Santosh
+weblift1.netlify.app`);
 
               whatsappBtn.href = `https://wa.me/${formattedNumber}?text=${message}`;
               callBtn.href = `tel:${formattedNumber}`;
@@ -1222,8 +1166,7 @@ Santosh`);
           });
         }
 
-        // Initialize Google Sign-In
-        initializeGoogleSignIn();
+
 
         // Load saved history from localStorage
         loadHistoryFromStorage();
@@ -1245,82 +1188,37 @@ Santosh`);
         });
 
         // Add click tracking to buttons
-        whatsappBtn.addEventListener("click", function () {
-          if (currentUser && phoneInput.value.trim()) {
+        whatsappBtn.addEventListener("click", function (e) {
+          if (phoneInput.value.trim()) {
             addToHistory("whatsapp", phoneInput.value.trim());
           }
+          // Allow the default link behavior to continue
         });
 
-        callBtn.addEventListener("click", function () {
-          if (currentUser && phoneInput.value.trim()) {
+        callBtn.addEventListener("click", function (e) {
+          if (phoneInput.value.trim()) {
             addToHistory("call", phoneInput.value.trim());
           }
+          // Allow the default link behavior to continue
         });
 
-        emailBtn.addEventListener("click", function () {
-          if (currentUser && phoneInput.value.trim()) {
+        emailBtn.addEventListener("click", function (e) {
+          if (phoneInput.value.trim()) {
             addToHistory("email", phoneInput.value.trim());
           }
+          // Allow the default link behavior to continue
         });
       });
 
-      // Google Sign-In Functions
-      function initializeGoogleSignIn() {
-        googleSigninBtn.addEventListener("click", function () {
-          if (currentUser) {
-            signOut();
-          } else {
-            signIn();
-          }
-        });
-      }
 
-      function signIn() {
-        // For demo purposes, we'll simulate Google Sign-In
-        // In a real implementation, you would use Google's OAuth flow
-        const mockUser = {
-          name: "Demo User",
-          email: "demo@example.com",
-          picture: "https://via.placeholder.com/32x32/3b82f6/ffffff?text=U",
-        };
-
-        currentUser = mockUser;
-        updateUIForSignedInUser();
-        showNotification("Signed in successfully!");
-      }
-
-      function signOut() {
-        currentUser = null;
-        updateUIForSignedOutUser();
-        showNotification("Signed out successfully!");
-      }
-
-      function updateUIForSignedInUser() {
-        googleSigninBtn.style.display = "none";
-        userProfile.style.display = "flex";
-        historyBtn.style.display = "flex";
-
-        document.getElementById("user-avatar").src = currentUser.picture;
-        document.getElementById("user-name").textContent = currentUser.name;
-      }
-
-      function updateUIForSignedOutUser() {
-        googleSigninBtn.style.display = "flex";
-        userProfile.style.display = "none";
-        historyBtn.style.display = "none";
-        hideHistory();
-      }
 
       // History Functions
       function addToHistory(type, contact) {
-        if (!currentUser) return;
-
         const historyItem = {
           id: Date.now(),
           type: type,
           contact: contact,
           timestamp: new Date().toISOString(),
-          user: currentUser.email,
         };
 
         outreachHistory.unshift(historyItem);
@@ -1331,20 +1229,11 @@ Santosh`);
       }
 
       function showHistory() {
-        if (!currentUser) {
-          showNotification("Please sign in to view history");
-          return;
-        }
-
-        const userHistory = outreachHistory.filter(
-          (item) => item.user === currentUser.email
-        );
-
-        if (userHistory.length === 0) {
+        if (outreachHistory.length === 0) {
           historyList.innerHTML =
             '<div class="no-history">No outreach history found. Start making connections!</div>';
         } else {
-          historyList.innerHTML = userHistory
+          historyList.innerHTML = outreachHistory
             .map((item) => createHistoryItemHTML(item))
             .join("");
         }
