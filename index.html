@@ -109,7 +109,7 @@
         padding: 12px 16px;
         border: 1px solid #d1d5db;
         border-radius: 8px;
-        font-size: 16px;
+        font-size: 14px;
         transition: all 0.2s ease;
         background: rgba(255, 255, 255, 0.9);
       }
@@ -122,6 +122,7 @@
 
       .input::placeholder {
         color: #9ca3af;
+        font-size: 13px;
       }
 
       .button-group {
@@ -262,7 +263,6 @@
       </div>
 
       <div class="form-group">
-        <label for="phone" class="label">Phone Number / Email</label>
         <input
           type="text"
           id="phone"
@@ -302,14 +302,201 @@
         const callBtn = document.getElementById("call-btn");
         const emailBtn = document.getElementById("email-btn");
 
+        let userCountryCode = "+91"; // Default fallback
+
         function formatNumber(input) {
           let cleaned = input.replace(/\D/g, "");
-          if (cleaned.startsWith("91")) {
-            cleaned = cleaned.substring(2);
-          } else if (cleaned.startsWith("0")) {
+
+          // Remove common country codes if they exist
+          const commonCodes = [
+            "91",
+            "1",
+            "44",
+            "61",
+            "49",
+            "33",
+            "39",
+            "34",
+            "31",
+            "55",
+            "52",
+            "54",
+            "56",
+            "57",
+            "51",
+            "58",
+            "81",
+            "82",
+            "86",
+            "65",
+            "60",
+            "66",
+            "84",
+            "63",
+            "62",
+            "966",
+            "971",
+            "974",
+            "965",
+            "973",
+            "968",
+            "27",
+            "20",
+            "234",
+            "254",
+            "233",
+            "212",
+            "213",
+            "216",
+            "218",
+            "249",
+            "251",
+            "255",
+            "256",
+            "260",
+            "263",
+            "267",
+            "264",
+            "258",
+            "261",
+            "230",
+            "248",
+            "253",
+            "252",
+            "291",
+            "211",
+            "236",
+            "235",
+            "237",
+            "240",
+            "241",
+            "242",
+            "243",
+            "244",
+            "245",
+            "239",
+            "238",
+            "220",
+            "224",
+            "232",
+            "231",
+            "225",
+            "226",
+            "223",
+            "227",
+            "229",
+            "228",
+            "221",
+            "222",
+            "351",
+            "353",
+            "32",
+            "41",
+            "43",
+            "46",
+            "47",
+            "45",
+            "358",
+            "48",
+            "420",
+            "421",
+            "36",
+            "40",
+            "359",
+            "385",
+            "386",
+            "381",
+            "382",
+            "387",
+            "389",
+            "355",
+            "30",
+            "357",
+            "356",
+            "354",
+            "371",
+            "370",
+            "372",
+            "375",
+            "380",
+            "373",
+            "995",
+            "374",
+            "994",
+            "90",
+            "972",
+            "962",
+            "961",
+            "963",
+            "964",
+            "98",
+            "93",
+            "92",
+            "880",
+            "94",
+            "977",
+            "975",
+            "960",
+            "95",
+            "856",
+            "855",
+            "976",
+            "998",
+            "996",
+            "992",
+            "993",
+            "64",
+            "679",
+            "675",
+            "677",
+            "678",
+            "687",
+            "689",
+            "676",
+            "685",
+            "686",
+            "688",
+            "674",
+            "680",
+            "692",
+            "691",
+            "682",
+            "683",
+            "690",
+            "297",
+            "501",
+            "506",
+            "53",
+            "503",
+            "502",
+            "509",
+            "504",
+            "505",
+            "507",
+            "598",
+            "595",
+            "591",
+            "593",
+            "592",
+            "597",
+            "500",
+            "594",
+          ];
+
+          // Check if the number starts with any country code
+          for (let code of commonCodes) {
+            if (cleaned.startsWith(code)) {
+              cleaned = cleaned.substring(code.length);
+              break;
+            }
+          }
+
+          // Remove leading zero if present
+          if (cleaned.startsWith("0")) {
             cleaned = cleaned.substring(1);
           }
-          return "+91" + cleaned;
+
+          return userCountryCode + cleaned;
         }
 
         function isValidEmail(email) {
@@ -585,6 +772,7 @@ Santosh`);
             if (data.country_code && countryCodes[data.country_code]) {
               const country = countryCodes[data.country_code];
               countryText.textContent = `${country.name} ${country.code}`;
+              userCountryCode = country.code; // Set the user's country code
               countryInfo.classList.remove("loading");
               return;
             }
@@ -602,6 +790,7 @@ Santosh`);
             if (data.country_code2 && countryCodes[data.country_code2]) {
               const country = countryCodes[data.country_code2];
               countryText.textContent = `${country.name} ${country.code}`;
+              userCountryCode = country.code; // Set the user's country code
               countryInfo.classList.remove("loading");
               return;
             }
