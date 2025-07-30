@@ -369,6 +369,254 @@ Santosh`);
 
         // Initialize links
         updateLinks();
+
+        // Country detection functionality
+        const countryInfo = document.getElementById("country-info");
+        const countryText = document.getElementById("country-text");
+
+        // Country dialing codes mapping
+        const countryCodes = {
+          IN: { name: "India", code: "+91" },
+          US: { name: "United States", code: "+1" },
+          GB: { name: "United Kingdom", code: "+44" },
+          CA: { name: "Canada", code: "+1" },
+          AU: { name: "Australia", code: "+61" },
+          DE: { name: "Germany", code: "+49" },
+          FR: { name: "France", code: "+33" },
+          IT: { name: "Italy", code: "+39" },
+          ES: { name: "Spain", code: "+34" },
+          NL: { name: "Netherlands", code: "+31" },
+          BR: { name: "Brazil", code: "+55" },
+          MX: { name: "Mexico", code: "+52" },
+          AR: { name: "Argentina", code: "+54" },
+          CL: { name: "Chile", code: "+56" },
+          CO: { name: "Colombia", code: "+57" },
+          PE: { name: "Peru", code: "+51" },
+          VE: { name: "Venezuela", code: "+58" },
+          JP: { name: "Japan", code: "+81" },
+          KR: { name: "South Korea", code: "+82" },
+          CN: { name: "China", code: "+86" },
+          SG: { name: "Singapore", code: "+65" },
+          MY: { name: "Malaysia", code: "+60" },
+          TH: { name: "Thailand", code: "+66" },
+          VN: { name: "Vietnam", code: "+84" },
+          PH: { name: "Philippines", code: "+63" },
+          ID: { name: "Indonesia", code: "+62" },
+          SA: { name: "Saudi Arabia", code: "+966" },
+          AE: { name: "UAE", code: "+971" },
+          QA: { name: "Qatar", code: "+974" },
+          KW: { name: "Kuwait", code: "+965" },
+          BH: { name: "Bahrain", code: "+973" },
+          OM: { name: "Oman", code: "+968" },
+          ZA: { name: "South Africa", code: "+27" },
+          EG: { name: "Egypt", code: "+20" },
+          NG: { name: "Nigeria", code: "+234" },
+          KE: { name: "Kenya", code: "+254" },
+          GH: { name: "Ghana", code: "+233" },
+          MA: { name: "Morocco", code: "+212" },
+          DZ: { name: "Algeria", code: "+213" },
+          TN: { name: "Tunisia", code: "+216" },
+          LY: { name: "Libya", code: "+218" },
+          SD: { name: "Sudan", code: "+249" },
+          ET: { name: "Ethiopia", code: "+251" },
+          TZ: { name: "Tanzania", code: "+255" },
+          UG: { name: "Uganda", code: "+256" },
+          ZM: { name: "Zambia", code: "+260" },
+          ZW: { name: "Zimbabwe", code: "+263" },
+          BW: { name: "Botswana", code: "+267" },
+          NA: { name: "Namibia", code: "+264" },
+          MZ: { name: "Mozambique", code: "+258" },
+          MG: { name: "Madagascar", code: "+261" },
+          MU: { name: "Mauritius", code: "+230" },
+          SC: { name: "Seychelles", code: "+248" },
+          DJ: { name: "Djibouti", code: "+253" },
+          SO: { name: "Somalia", code: "+252" },
+          ER: { name: "Eritrea", code: "+291" },
+          SS: { name: "South Sudan", code: "+211" },
+          CF: { name: "Central African Republic", code: "+236" },
+          TD: { name: "Chad", code: "+235" },
+          CM: { name: "Cameroon", code: "+237" },
+          GQ: { name: "Equatorial Guinea", code: "+240" },
+          GA: { name: "Gabon", code: "+241" },
+          CG: { name: "Republic of the Congo", code: "+242" },
+          CD: { name: "Democratic Republic of the Congo", code: "+243" },
+          AO: { name: "Angola", code: "+244" },
+          GW: { name: "Guinea-Bissau", code: "+245" },
+          ST: { name: "São Tomé and Príncipe", code: "+239" },
+          CV: { name: "Cape Verde", code: "+238" },
+          GM: { name: "Gambia", code: "+220" },
+          GN: { name: "Guinea", code: "+224" },
+          SL: { name: "Sierra Leone", code: "+232" },
+          LR: { name: "Liberia", code: "+231" },
+          CI: { name: "Ivory Coast", code: "+225" },
+          BF: { name: "Burkina Faso", code: "+226" },
+          ML: { name: "Mali", code: "+223" },
+          NE: { name: "Niger", code: "+227" },
+          BJ: { name: "Benin", code: "+229" },
+          TG: { name: "Togo", code: "+228" },
+          SN: { name: "Senegal", code: "+221" },
+          MR: { name: "Mauritania", code: "+222" },
+          EH: { name: "Western Sahara", code: "+212" },
+          PT: { name: "Portugal", code: "+351" },
+          IE: { name: "Ireland", code: "+353" },
+          BE: { name: "Belgium", code: "+32" },
+          CH: { name: "Switzerland", code: "+41" },
+          AT: { name: "Austria", code: "+43" },
+          SE: { name: "Sweden", code: "+46" },
+          NO: { name: "Norway", code: "+47" },
+          DK: { name: "Denmark", code: "+45" },
+          FI: { name: "Finland", code: "+358" },
+          PL: { name: "Poland", code: "+48" },
+          CZ: { name: "Czech Republic", code: "+420" },
+          SK: { name: "Slovakia", code: "+421" },
+          HU: { name: "Hungary", code: "+36" },
+          RO: { name: "Romania", code: "+40" },
+          BG: { name: "Bulgaria", code: "+359" },
+          HR: { name: "Croatia", code: "+385" },
+          SI: { name: "Slovenia", code: "+386" },
+          RS: { name: "Serbia", code: "+381" },
+          ME: { name: "Montenegro", code: "+382" },
+          BA: { name: "Bosnia and Herzegovina", code: "+387" },
+          MK: { name: "North Macedonia", code: "+389" },
+          AL: { name: "Albania", code: "+355" },
+          GR: { name: "Greece", code: "+30" },
+          CY: { name: "Cyprus", code: "+357" },
+          MT: { name: "Malta", code: "+356" },
+          IS: { name: "Iceland", code: "+354" },
+          LV: { name: "Latvia", code: "+371" },
+          LT: { name: "Lithuania", code: "+370" },
+          EE: { name: "Estonia", code: "+372" },
+          BY: { name: "Belarus", code: "+375" },
+          UA: { name: "Ukraine", code: "+380" },
+          MD: { name: "Moldova", code: "+373" },
+          GE: { name: "Georgia", code: "+995" },
+          AM: { name: "Armenia", code: "+374" },
+          AZ: { name: "Azerbaijan", code: "+994" },
+          TR: { name: "Turkey", code: "+90" },
+          IL: { name: "Israel", code: "+972" },
+          JO: { name: "Jordan", code: "+962" },
+          LB: { name: "Lebanon", code: "+961" },
+          SY: { name: "Syria", code: "+963" },
+          IQ: { name: "Iraq", code: "+964" },
+          IR: { name: "Iran", code: "+98" },
+          AF: { name: "Afghanistan", code: "+93" },
+          PK: { name: "Pakistan", code: "+92" },
+          BD: { name: "Bangladesh", code: "+880" },
+          LK: { name: "Sri Lanka", code: "+94" },
+          NP: { name: "Nepal", code: "+977" },
+          BT: { name: "Bhutan", code: "+975" },
+          MV: { name: "Maldives", code: "+960" },
+          MM: { name: "Myanmar", code: "+95" },
+          LA: { name: "Laos", code: "+856" },
+          KH: { name: "Cambodia", code: "+855" },
+          MN: { name: "Mongolia", code: "+976" },
+          KZ: { name: "Kazakhstan", code: "+7" },
+          UZ: { name: "Uzbekistan", code: "+998" },
+          KG: { name: "Kyrgyzstan", code: "+996" },
+          TJ: { name: "Tajikistan", code: "+992" },
+          TM: { name: "Turkmenistan", code: "+993" },
+          RU: { name: "Russia", code: "+7" },
+          NZ: { name: "New Zealand", code: "+64" },
+          FJ: { name: "Fiji", code: "+679" },
+          PG: { name: "Papua New Guinea", code: "+675" },
+          SB: { name: "Solomon Islands", code: "+677" },
+          VU: { name: "Vanuatu", code: "+678" },
+          NC: { name: "New Caledonia", code: "+687" },
+          PF: { name: "French Polynesia", code: "+689" },
+          TO: { name: "Tonga", code: "+676" },
+          WS: { name: "Samoa", code: "+685" },
+          KI: { name: "Kiribati", code: "+686" },
+          TV: { name: "Tuvalu", code: "+688" },
+          NR: { name: "Nauru", code: "+674" },
+          PW: { name: "Palau", code: "+680" },
+          MH: { name: "Marshall Islands", code: "+692" },
+          FM: { name: "Micronesia", code: "+691" },
+          CK: { name: "Cook Islands", code: "+682" },
+          NU: { name: "Niue", code: "+683" },
+          TK: { name: "Tokelau", code: "+690" },
+          AS: { name: "American Samoa", code: "+1" },
+          GU: { name: "Guam", code: "+1" },
+          MP: { name: "Northern Mariana Islands", code: "+1" },
+          PR: { name: "Puerto Rico", code: "+1" },
+          VI: { name: "U.S. Virgin Islands", code: "+1" },
+          AI: { name: "Anguilla", code: "+1" },
+          AG: { name: "Antigua and Barbuda", code: "+1" },
+          AW: { name: "Aruba", code: "+297" },
+          BS: { name: "Bahamas", code: "+1" },
+          BB: { name: "Barbados", code: "+1" },
+          BZ: { name: "Belize", code: "+501" },
+          BM: { name: "Bermuda", code: "+1" },
+          VG: { name: "British Virgin Islands", code: "+1" },
+          KY: { name: "Cayman Islands", code: "+1" },
+          CR: { name: "Costa Rica", code: "+506" },
+          CU: { name: "Cuba", code: "+53" },
+          DM: { name: "Dominica", code: "+1" },
+          DO: { name: "Dominican Republic", code: "+1" },
+          SV: { name: "El Salvador", code: "+503" },
+          GD: { name: "Grenada", code: "+1" },
+          GT: { name: "Guatemala", code: "+502" },
+          HT: { name: "Haiti", code: "+509" },
+          HN: { name: "Honduras", code: "+504" },
+          JM: { name: "Jamaica", code: "+1" },
+          NI: { name: "Nicaragua", code: "+505" },
+          PA: { name: "Panama", code: "+507" },
+          KN: { name: "Saint Kitts and Nevis", code: "+1" },
+          LC: { name: "Saint Lucia", code: "+1" },
+          VC: { name: "Saint Vincent and the Grenadines", code: "+1" },
+          TT: { name: "Trinidad and Tobago", code: "+1" },
+          TC: { name: "Turks and Caicos Islands", code: "+1" },
+          UY: { name: "Uruguay", code: "+598" },
+          PY: { name: "Paraguay", code: "+595" },
+          BO: { name: "Bolivia", code: "+591" },
+          EC: { name: "Ecuador", code: "+593" },
+          GY: { name: "Guyana", code: "+592" },
+          SR: { name: "Suriname", code: "+597" },
+          FK: { name: "Falkland Islands", code: "+500" },
+          GF: { name: "French Guiana", code: "+594" },
+          BR: { name: "Brazil", code: "+55" },
+        };
+
+        async function detectCountry() {
+          try {
+            // First try to get country from IP geolocation
+            const response = await fetch("https://ipapi.co/json/");
+            const data = await response.json();
+
+            if (data.country_code && countryCodes[data.country_code]) {
+              const country = countryCodes[data.country_code];
+              countryText.textContent = `${country.name} ${country.code}`;
+              countryInfo.classList.remove("loading");
+              return;
+            }
+          } catch (error) {
+            console.log("IP geolocation failed, trying alternative method");
+          }
+
+          try {
+            // Fallback to alternative geolocation service
+            const response = await fetch(
+              "https://api.ipgeolocation.io/ipgeo?apiKey=free"
+            );
+            const data = await response.json();
+
+            if (data.country_code2 && countryCodes[data.country_code2]) {
+              const country = countryCodes[data.country_code2];
+              countryText.textContent = `${country.name} ${country.code}`;
+              countryInfo.classList.remove("loading");
+              return;
+            }
+          } catch (error) {
+            console.log("Alternative geolocation failed");
+          }
+
+          // If all geolocation methods fail, show default
+          countryText.textContent = "Location unavailable";
+          countryInfo.classList.remove("loading");
+          countryInfo.classList.add("error");
+        }
+
+        // Detect country on page load
+        detectCountry();
       });
     </script>
   </body>
