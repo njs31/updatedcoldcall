@@ -570,45 +570,19 @@
           const input = phoneInput.value.trim();
           if (input) {
             if (isValidEmail(input)) {
-              // Handle email
-              const subject = encodeURIComponent(
-                "Website Development Services"
-              );
-              const message = encodeURIComponent(`Hi,
-
-I noticed that your business doesn't have a website, and I'd love to assist you in creating one. My name is Santosh, and I specialize in designing modern, user-friendly websites that enhance online presence and increase sales.
-
-We Have the most Affordable Plans:
-1. 5,900/- or 2. 11,900/-
-
-Let's connect for a quick call or Google Meet to discuss how I can help elevate your business. I look forward to hearing from you!
-
-Best regards,
-Santosh
-weblift1.netlify.app`);
-
+              // Handle email (open blank compose)
               whatsappBtn.href = "#";
               callBtn.href = "#";
-              emailBtn.href = `mailto:${input}?subject=${subject}&body=${message}`;
+              emailBtn.href = `mailto:${input}`;
             } else {
               // Handle phone number that must include country code
               const formattedNumber = normalizeE164(input);
-              const message =
-                encodeURIComponent(`Hi, I noticed that your business doesn't have a website, and I'd love to assist you in creating one. My name is Santosh, and I specialize in designing modern, user-friendly websites that enhance online presence and increase sales.
 
-We Have the most Affordable Plans:
-1. 5,900/- or 2. 11,900/-
-
-Let's connect for a quick call or Google Meet to discuss how I can help elevate your business. I look forward to hearing from you!
-
-Best regards,
-Santosh
-weblift1.netlify.app`);
-
+              // Open WhatsApp with empty message
               whatsappBtn.href = `https://wa.me/${formattedNumber.replace(
                 "+",
                 ""
-              )}?text=${message}`;
+              )}`;
               callBtn.href = `tel:${formattedNumber}`;
               emailBtn.href = "#";
             }
