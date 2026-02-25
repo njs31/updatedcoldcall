@@ -1,46 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Cold calling outreach tool" />
-    <title>Cold Reach Out</title>
-    <link rel="shortcut icon" href="downl.png" type="image/x-icon" />
 
-    <!-- Font Awesome for icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Cold calling outreach tool" />
+  <title>Cold Reach Out</title>
+  <link rel="shortcut icon" href="downl.png" type="image/x-icon" />
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        -webkit-tap-highlight-color: transparent;
-      }
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-      body {
-        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
-          Roboto, sans-serif;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-        /* Rainbow gradient background with live hue animation */
-        background: linear-gradient(
-          -45deg,
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+
+      /* Rainbow gradient background with live hue animation */
+      background: linear-gradient(-45deg,
           #ee7752,
           #e73c7e,
           #23a6d5,
@@ -52,671 +46,684 @@
           #feca57,
           #ff9ff3,
           #54a0ff,
-          #5f27cd
-        );
-        background-size: 400% 400%;
-        animation: rainbow-gradient 15s ease infinite;
+          #5f27cd);
+      background-size: 400% 400%;
+      animation: rainbow-gradient 15s ease infinite;
+    }
+
+    @keyframes rainbow-gradient {
+      0% {
+        background-position: 0% 50%;
       }
 
-      @keyframes rainbow-gradient {
-        0% {
-          background-position: 0% 50%;
-        }
-        50% {
-          background-position: 100% 50%;
-        }
-        100% {
-          background-position: 0% 50%;
-        }
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .container {
+      max-width: 400px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 10px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 8px;
+    }
+
+    .input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: all 0.2s ease;
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .input:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .input::placeholder {
+      color: #9ca3af;
+      font-size: 13px;
+    }
+
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+
+    .btn-whatsapp {
+      background: #25d366;
+      color: white;
+    }
+
+    .btn-whatsapp:hover {
+      background: #128c7e;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+    }
+
+    .btn-call {
+      background: #3b82f6;
+      color: white;
+    }
+
+    .btn-call:hover {
+      background: #2563eb;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    }
+
+    .btn-email {
+      background: #ea4335;
+      color: white;
+    }
+
+    .btn-email:hover {
+      background: #d32f2f;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(234, 67, 53, 0.3);
+    }
+
+    .btn i {
+      margin-right: 8px;
+      font-size: 18px;
+    }
+
+    /* Responsive design */
+    @media (max-width: 480px) {
+      body {
+        padding: 16px;
       }
 
       .container {
-        max-width: 400px;
-        width: 100%;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 12px;
-        padding: 30px;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-      }
-
-      .header {
-        text-align: center;
-        margin-bottom: 30px;
+        padding: 24px;
       }
 
       .title {
-        font-size: 24px;
-        font-weight: 600;
-        color: #1f2937;
-        margin-bottom: 10px;
+        font-size: 20px;
       }
+    }
 
-      .form-group {
-        margin-bottom: 20px;
-      }
+    /* Hide scrollbars */
+    ::-webkit-scrollbar {
+      display: none;
+    }
 
-      .label {
-        display: block;
-        font-size: 14px;
-        font-weight: 500;
-        color: #374151;
-        margin-bottom: 8px;
-      }
+    * {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
 
-      .input {
-        width: 100%;
-        padding: 12px 16px;
-        border: 1px solid #d1d5db;
-        border-radius: 8px;
-        font-size: 14px;
-        transition: all 0.2s ease;
-        background: rgba(255, 255, 255, 0.9);
-      }
+    /* Country info display removed */
 
-      .input:focus {
-        outline: none;
-        border-color: #3b82f6;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-      }
+    /* Header with history button */
+    .top-header {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1001;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
 
-      .input::placeholder {
-        color: #9ca3af;
-        font-size: 13px;
-      }
+    .history-btn {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #374151;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-      .button-group {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-      }
+    .history-btn:hover {
+      background: rgba(255, 255, 255, 1);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
 
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 12px 20px;
-        border: none;
-        border-radius: 8px;
-        font-size: 16px;
-        font-weight: 500;
-        text-decoration: none;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        text-align: center;
-      }
+    .history-btn i {
+      font-size: 16px;
+      color: #3b82f6;
+    }
 
-      .btn-whatsapp {
-        background: #25d366;
-        color: white;
-      }
+    /* History Modal */
+    .history-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 2000;
+      backdrop-filter: blur(5px);
+    }
 
-      .btn-whatsapp:hover {
-        background: #128c7e;
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
-      }
+    .history-modal.show {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-      .btn-call {
-        background: #3b82f6;
-        color: white;
-      }
+    .history-content {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 30px;
+      max-width: 600px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
 
-      .btn-call:hover {
-        background: #2563eb;
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-      }
+    .history-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #e5e7eb;
+    }
 
-      .btn-email {
-        background: #ea4335;
-        color: white;
-      }
+    .history-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #1f2937;
+    }
 
-      .btn-email:hover {
-        background: #d32f2f;
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(234, 67, 53, 0.3);
-      }
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: #6b7280;
+      cursor: pointer;
+      padding: 5px;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
 
-      .btn i {
-        margin-right: 8px;
-        font-size: 18px;
-      }
+    .close-btn:hover {
+      background: #f3f4f6;
+      color: #374151;
+    }
 
-      /* Responsive design */
-      @media (max-width: 480px) {
-        body {
-          padding: 16px;
-        }
+    .history-item {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 10px;
+      transition: all 0.2s ease;
+    }
 
-        .container {
-          padding: 24px;
-        }
+    .history-item:hover {
+      background: #f3f4f6;
+      border-color: #d1d5db;
+    }
 
-        .title {
-          font-size: 20px;
-        }
-      }
+    .history-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
 
-      /* Hide scrollbars */
-      ::-webkit-scrollbar {
-        display: none;
-      }
+    .contact-info {
+      font-weight: 600;
+      color: #1f2937;
+      font-size: 16px;
+    }
 
-      * {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
+    .contact-type {
+      background: #3b82f6;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 500;
+    }
 
-      /* Country info display removed */
+    .contact-type.email {
+      background: #ea4335;
+    }
 
-      /* Header with history button */
+    .contact-type.whatsapp {
+      background: #25d366;
+    }
+
+    .contact-type.call {
+      background: #3b82f6;
+    }
+
+    .timestamp {
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    .no-history {
+      text-align: center;
+      color: #6b7280;
+      padding: 40px 20px;
+      font-size: 16px;
+    }
+
+    /* Responsive for header */
+    @media (max-width: 480px) {
       .top-header {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        z-index: 1001;
-        display: flex;
-        align-items: center;
-        gap: 15px;
+        top: 16px;
+        right: 16px;
+        gap: 10px;
       }
 
       .history-btn {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 8px;
-        padding: 10px 16px;
-        font-size: 14px;
-        font-weight: 500;
-        color: #374151;
-        text-decoration: none;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-
-      .history-btn:hover {
-        background: rgba(255, 255, 255, 1);
-        transform: translateY(-1px);
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-      }
-
-      .history-btn i {
-        font-size: 16px;
-        color: #3b82f6;
-      }
-
-      /* History Modal */
-      .history-modal {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 2000;
-        backdrop-filter: blur(5px);
-      }
-
-      .history-modal.show {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        padding: 8px 12px;
+        font-size: 12px;
       }
 
       .history-content {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 12px;
-        padding: 30px;
-        max-width: 600px;
-        width: 90%;
-        max-height: 80vh;
-        overflow-y: auto;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-      }
-
-      .history-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-        padding-bottom: 15px;
-        border-bottom: 1px solid #e5e7eb;
+        padding: 20px;
+        width: 95%;
       }
 
       .history-title {
-        font-size: 20px;
-        font-weight: 600;
-        color: #1f2937;
+        font-size: 18px;
       }
+    }
 
-      .close-btn {
-        background: none;
-        border: none;
-        font-size: 24px;
-        color: #6b7280;
-        cursor: pointer;
-        padding: 5px;
-        border-radius: 4px;
-        transition: all 0.2s ease;
-      }
+    /* Navbar styles */
+    .navbar {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.97);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 2002;
+    }
 
-      .close-btn:hover {
-        background: #f3f4f6;
-        color: #374151;
-      }
+    .navbar-container {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 24px;
+    }
 
-      .history-item {
-        background: #f9fafb;
-        border: 1px solid #e5e7eb;
-        border-radius: 8px;
-        padding: 15px;
-        margin-bottom: 10px;
-        transition: all 0.2s ease;
-      }
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 20px;
+      color: #1f2937;
+      letter-spacing: 1px;
+    }
 
-      .history-item:hover {
-        background: #f3f4f6;
-        border-color: #d1d5db;
-      }
+    .navbar-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      transition: max-height 0.3s;
+    }
 
-      .history-item-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 8px;
-      }
+    .navbar-links li a {
+      color: #374151;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+      transition: color 0.2s;
+      padding: 6px 0;
+    }
 
-      .contact-info {
-        font-weight: 600;
-        color: #1f2937;
-        font-size: 16px;
-      }
+    .navbar-links li a:hover {
+      color: #3b82f6;
+    }
 
-      .contact-type {
-        background: #3b82f6;
-        color: white;
-        padding: 4px 8px;
-        border-radius: 4px;
-        font-size: 12px;
-        font-weight: 500;
-      }
+    .navbar-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 22px;
+      color: #374151;
+      cursor: pointer;
+    }
 
-      .contact-type.email {
-        background: #ea4335;
-      }
-
-      .contact-type.whatsapp {
-        background: #25d366;
-      }
-
-      .contact-type.call {
-        background: #3b82f6;
-      }
-
-      .timestamp {
-        color: #6b7280;
-        font-size: 14px;
-      }
-
-      .no-history {
-        text-align: center;
-        color: #6b7280;
-        padding: 40px 20px;
-        font-size: 16px;
-      }
-
-      /* Responsive for header */
-      @media (max-width: 480px) {
-        .top-header {
-          top: 16px;
-          right: 16px;
-          gap: 10px;
-        }
-
-        .history-btn {
-          padding: 8px 12px;
-          font-size: 12px;
-        }
-
-        .history-content {
-          padding: 20px;
-          width: 95%;
-        }
-
-        .history-title {
-          font-size: 18px;
-        }
-      }
-
-      /* Navbar styles */
-      .navbar {
-        width: 100%;
-        background: rgba(255, 255, 255, 0.97);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 2002;
-      }
-
+    @media (max-width: 600px) {
       .navbar-container {
-        max-width: 900px;
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 12px 24px;
-      }
-
-      .navbar-brand {
-        font-weight: 700;
-        font-size: 20px;
-        color: #1f2937;
-        letter-spacing: 1px;
+        padding: 10px 12px;
       }
 
       .navbar-links {
-        display: flex;
-        gap: 28px;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        transition: max-height 0.3s;
+        flex-direction: column;
+        position: absolute;
+        top: 56px;
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.97);
+        max-height: 0;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
       }
 
-      .navbar-links li a {
-        color: #374151;
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 16px;
-        transition: color 0.2s;
-        padding: 6px 0;
-      }
-
-      .navbar-links li a:hover {
-        color: #3b82f6;
+      .navbar-links.open {
+        max-height: 300px;
+        padding-bottom: 12px;
       }
 
       .navbar-toggle {
-        display: none;
-        background: none;
-        border: none;
-        font-size: 22px;
-        color: #374151;
-        cursor: pointer;
+        display: block;
       }
+    }
 
-      @media (max-width: 600px) {
-        .navbar-container {
-          padding: 10px 12px;
-        }
+    body {
+      padding-top: 60px;
+      /* To prevent content under navbar */
+    }
+  </style>
+</head>
 
-        .navbar-links {
-          flex-direction: column;
-          position: absolute;
-          top: 56px;
-          left: 0;
-          width: 100%;
-          background: rgba(255, 255, 255, 0.97);
-          max-height: 0;
-          overflow: hidden;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
-        }
+<body>
+  <!-- Top Header with History and Sign-In -->
+  <!-- Responsive Navbar -->
 
-        .navbar-links.open {
-          max-height: 300px;
-          padding-bottom: 12px;
-        }
-
-        .navbar-toggle {
-          display: block;
-        }
-      }
-
-      body {
-        padding-top: 60px; /* To prevent content under navbar */
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Top Header with History and Sign-In -->
-    <!-- Responsive Navbar -->
-
-    <div class="container">
-      <div class="header">
-        <h1 class="title">Cold Reach Out</h1>
-      </div>
-
-      <div class="form-group">
-        <input
-          type="text"
-          id="phone"
-          class="input"
-          placeholder="Enter Phone Number / E-mail"
-        />
-      </div>
-
-      <div class="button-group">
-        <a href="#" id="whatsapp-btn" class="btn btn-whatsapp" target="_blank">
-          <i class="fab fa-whatsapp"></i>
-          WhatsApp
-        </a>
-
-        <a href="#" id="call-btn" class="btn btn-call">
-          <i class="fas fa-phone"></i>
-          Call
-        </a>
-
-        <a href="#" id="email-btn" class="btn btn-email">
-          <i class="fas fa-envelope"></i>
-          Email
-        </a>
-      </div>
+  <div class="container">
+    <div class="header">
+      <h1 class="title">Cold Reach Out</h1>
     </div>
 
-    <!-- Country Info Display removed -->
-
-    <!-- History Modal -->
-    <div id="history-modal" class="history-modal">
-      <div class="history-content">
-        <div class="history-header">
-          <h2 class="history-title">Outreach History</h2>
-          <button class="close-btn" id="close-history">&times;</button>
-        </div>
-        <div id="history-list">
-          <!-- History items will be populated here -->
-        </div>
-      </div>
+    <div class="form-group">
+      <input type="text" id="phone" class="input" placeholder="Enter Phone Number / E-mail" />
     </div>
 
-    <script>
-      // Global variables for history
-      let outreachHistory = [];
+    <div class="button-group">
+      <a href="#" id="whatsapp-btn" class="btn btn-whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        WhatsApp
+      </a>
 
-      document.addEventListener("DOMContentLoaded", function () {
-        const phoneInput = document.getElementById("phone");
-        const whatsappBtn = document.getElementById("whatsapp-btn");
-        const callBtn = document.getElementById("call-btn");
-        const emailBtn = document.getElementById("email-btn");
+      <a href="#" id="call-btn" class="btn btn-call">
+        <i class="fas fa-phone"></i>
+        Call
+      </a>
 
-        const historyBtn = document.getElementById("history-btn");
-        const historyModal = document.getElementById("history-modal");
-        const closeHistoryBtn = document.getElementById("close-history");
-        const historyList = document.getElementById("history-list");
+      <a href="#" id="email-btn" class="btn btn-email">
+        <i class="fas fa-envelope"></i>
+        Email
+      </a>
+    </div>
+  </div>
 
-        function normalizeE164(input) {
-          const digits = input.replace(/\D/g, "");
-          if (!digits) return "";
-          if (input.trim().startsWith("+")) return "+" + digits; // already E.164-like
-          return "+" + digits; // assume user entered full country code digits
+  <!-- Country Info Display removed -->
+
+  <!-- History Modal -->
+  <div id="history-modal" class="history-modal">
+    <div class="history-content">
+      <div class="history-header">
+        <h2 class="history-title">Outreach History</h2>
+        <button class="close-btn" id="close-history">&times;</button>
+      </div>
+      <div id="history-list">
+        <!-- History items will be populated here -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Global variables for history
+    let outreachHistory = [];
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const phoneInput = document.getElementById("phone");
+      const whatsappBtn = document.getElementById("whatsapp-btn");
+      const callBtn = document.getElementById("call-btn");
+      const emailBtn = document.getElementById("email-btn");
+
+      const historyBtn = document.getElementById("history-btn");
+      const historyModal = document.getElementById("history-modal");
+      const closeHistoryBtn = document.getElementById("close-history");
+      const historyList = document.getElementById("history-list");
+
+      function normalizeE164(input) {
+        let digits = input.replace(/\D/g, "");
+        if (!digits) return "";
+
+        // Remove leading zero if present
+        if (digits.startsWith("0")) {
+          digits = digits.substring(1);
         }
 
-        function isValidEmail(email) {
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          return emailRegex.test(email);
+        // If it already includes the 91 country code (12 digits total)
+        if (digits.startsWith("91") && digits.length === 12) {
+          return "+" + digits;
         }
 
-        function updateLinks() {
-          const input = phoneInput.value.trim();
-          if (input) {
-            if (isValidEmail(input)) {
-              // Handle email (open blank compose)
-              whatsappBtn.href = "#";
-              callBtn.href = "#";
-              emailBtn.href = `mailto:${input}`;
-            } else {
-              // Handle phone number that must include country code
-              const formattedNumber = normalizeE164(input);
+        // If the user explicitly typed a + for a different country code
+        if (input.trim().startsWith("+")) {
+          return "+" + digits;
+        }
 
-              // Open WhatsApp with prefilled message
-              const message = "Hi, I was checking businesses in your area and noticed you don’t have a website yet. Today most customers first search on Google before visiting or calling, and without a website you might be losing genuine enquiries daily. I design professional websites for just ₹4,999 including domain and hosting — no yearly maintenance charges. Most developers charge at least ₹15,000 for the same. A website helps customers trust your business, see your services, location, contact details, and even message you directly. I also optimize it so you can start appearing in Google search results and attract more local customers. Let me know if you’d like to see a sample.";
-              whatsappBtn.href = `https://wa.me/${formattedNumber.replace(
-                "+",
-                ""
-              )}?text=${encodeURIComponent(message)}`;
-              callBtn.href = `tel:${formattedNumber}`;
-              emailBtn.href = "#";
-            }
-          } else {
+        // Default to +91
+        return "+91" + digits;
+      }
+
+      function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+      }
+
+      function updateLinks() {
+        const input = phoneInput.value.trim();
+        if (input) {
+          if (isValidEmail(input)) {
+            // Handle email (open blank compose)
             whatsappBtn.href = "#";
             callBtn.href = "#";
+            emailBtn.href = `mailto:${input}`;
+          } else {
+            // Handle phone number that must include country code
+            const formattedNumber = normalizeE164(input);
+
+            // Open WhatsApp with prefilled message
+            const message = "Hi, I was checking businesses in your area and noticed you don’t have a website yet. Today most customers first search on Google before visiting or calling, and without a website you might be losing genuine enquiries daily. I design professional websites for just ₹4,999 including domain and hosting — no yearly maintenance charges. Most developers charge at least ₹15,000 for the same. A website helps customers trust your business, see your services, location, contact details, and even message you directly. I also optimize it so you can start appearing in Google search results and attract more local customers. Let me know if you’d like to see a sample.";
+            whatsappBtn.href = `https://wa.me/${formattedNumber.replace(
+              "+",
+              ""
+            )}?text=${encodeURIComponent(message)}`;
+            callBtn.href = `tel:${formattedNumber}`;
             emailBtn.href = "#";
           }
+        } else {
+          whatsappBtn.href = "#";
+          callBtn.href = "#";
+          emailBtn.href = "#";
         }
+      }
 
-        phoneInput.addEventListener("input", updateLinks);
+      phoneInput.addEventListener("input", updateLinks);
 
-        // Initialize links
-        updateLinks();
+      // Initialize links
+      updateLinks();
 
-        // Country detection removed; users must enter full number with country code
+      // Country detection removed; users must enter full number with country code
 
-        // Load saved history from localStorage
-        loadHistoryFromStorage();
+      // Load saved history from localStorage
+      loadHistoryFromStorage();
 
-        // Event listeners for history functionality
-        if (historyBtn) {
-          historyBtn.addEventListener("click", function (e) {
-            e.preventDefault();
-            showHistory();
-          });
-        }
-
-        closeHistoryBtn.addEventListener("click", function () {
-          hideHistory();
+      // Event listeners for history functionality
+      if (historyBtn) {
+        historyBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          showHistory();
         });
+      }
 
-        historyModal.addEventListener("click", function (e) {
-          if (e.target === historyModal) {
-            hideHistory();
-          }
-        });
-
-        // Add click tracking to buttons
-        whatsappBtn.addEventListener("click", function (e) {
-          if (phoneInput.value.trim()) {
-            addToHistory("whatsapp", phoneInput.value.trim());
-          }
-          // Allow the default link behavior to continue
-        });
-
-        callBtn.addEventListener("click", function (e) {
-          if (phoneInput.value.trim()) {
-            addToHistory("call", phoneInput.value.trim());
-          }
-          // Allow the default link behavior to continue
-        });
-
-        emailBtn.addEventListener("click", function (e) {
-          if (phoneInput.value.trim()) {
-            addToHistory("email", phoneInput.value.trim());
-          }
-          // Allow the default link behavior to continue
-        });
+      closeHistoryBtn.addEventListener("click", function () {
+        hideHistory();
       });
 
-      // History Functions
-      function addToHistory(type, contact) {
-        const historyItem = {
-          id: Date.now(),
-          type: type,
-          contact: contact,
-          timestamp: new Date().toISOString(),
-        };
-
-        outreachHistory.unshift(historyItem);
-        saveHistoryToStorage();
-        showNotification(
-          `${type.charAt(0).toUpperCase() + type.slice(1)} outreach recorded!`
-        );
-      }
-
-      function showHistory() {
-        if (outreachHistory.length === 0) {
-          historyList.innerHTML =
-            '<div class="no-history">No outreach history found. Start making connections!</div>';
-        } else {
-          historyList.innerHTML = outreachHistory
-            .map((item) => createHistoryItemHTML(item))
-            .join("");
+      historyModal.addEventListener("click", function (e) {
+        if (e.target === historyModal) {
+          hideHistory();
         }
+      });
 
-        historyModal.classList.add("show");
+      // Add click tracking to buttons
+      whatsappBtn.addEventListener("click", function (e) {
+        if (phoneInput.value.trim()) {
+          addToHistory("whatsapp", phoneInput.value.trim());
+        }
+        // Allow the default link behavior to continue
+      });
+
+      callBtn.addEventListener("click", function (e) {
+        if (phoneInput.value.trim()) {
+          addToHistory("call", phoneInput.value.trim());
+        }
+        // Allow the default link behavior to continue
+      });
+
+      emailBtn.addEventListener("click", function (e) {
+        if (phoneInput.value.trim()) {
+          addToHistory("email", phoneInput.value.trim());
+        }
+        // Allow the default link behavior to continue
+      });
+    });
+
+    // History Functions
+    function addToHistory(type, contact) {
+      const historyItem = {
+        id: Date.now(),
+        type: type,
+        contact: contact,
+        timestamp: new Date().toISOString(),
+      };
+
+      outreachHistory.unshift(historyItem);
+      saveHistoryToStorage();
+      showNotification(
+        `${type.charAt(0).toUpperCase() + type.slice(1)} outreach recorded!`
+      );
+    }
+
+    function showHistory() {
+      if (outreachHistory.length === 0) {
+        historyList.innerHTML =
+          '<div class="no-history">No outreach history found. Start making connections!</div>';
+      } else {
+        historyList.innerHTML = outreachHistory
+          .map((item) => createHistoryItemHTML(item))
+          .join("");
       }
 
-      function hideHistory() {
-        historyModal.classList.remove("show");
-      }
+      historyModal.classList.add("show");
+    }
 
-      function createHistoryItemHTML(item) {
-        const date = new Date(item.timestamp);
-        const formattedDate = date.toLocaleDateString();
-        const formattedTime = date.toLocaleTimeString();
+    function hideHistory() {
+      historyModal.classList.remove("show");
+    }
 
-        return `
+    function createHistoryItemHTML(item) {
+      const date = new Date(item.timestamp);
+      const formattedDate = date.toLocaleDateString();
+      const formattedTime = date.toLocaleTimeString();
+
+      return `
            <div class="history-item">
              <div class="history-item-header">
                <div class="contact-info">${item.contact}</div>
-               <span class="contact-type ${
-                 item.type
-               }">${item.type.toUpperCase()}</span>
+               <span class="contact-type ${item.type
+        }">${item.type.toUpperCase()}</span>
              </div>
              <div class="timestamp">${formattedDate} at ${formattedTime}</div>
            </div>
          `;
-      }
+    }
 
-      function saveHistoryToStorage() {
-        localStorage.setItem(
-          "outreachHistory",
-          JSON.stringify(outreachHistory)
-        );
-      }
+    function saveHistoryToStorage() {
+      localStorage.setItem(
+        "outreachHistory",
+        JSON.stringify(outreachHistory)
+      );
+    }
 
-      function loadHistoryFromStorage() {
-        const saved = localStorage.getItem("outreachHistory");
-        if (saved) {
-          outreachHistory = JSON.parse(saved);
-        }
+    function loadHistoryFromStorage() {
+      const saved = localStorage.getItem("outreachHistory");
+      if (saved) {
+        outreachHistory = JSON.parse(saved);
       }
+    }
 
-      function showNotification(message) {
-        // Notifications disabled by request; keep history without UI toast
-      }
+    function showNotification(message) {
+      // Notifications disabled by request; keep history without UI toast
+    }
 
-      // Add CSS animations for notifications
-      const style = document.createElement("style");
-      style.textContent = `
+    // Add CSS animations for notifications
+    const style = document.createElement("style");
+    style.textContent = `
          @keyframes slideIn {
            from { transform: translateX(-50%) translateY(-100%); opacity: 0; }
            to { transform: translateX(-50%) translateY(0); opacity: 1; }
@@ -726,18 +733,19 @@
            to { transform: translateX(-50%) translateY(-100%); opacity: 0; }
          }
        `;
-      document.head.appendChild(style);
+    document.head.appendChild(style);
 
-      // Navbar toggle for mobile
-      document.addEventListener("DOMContentLoaded", function () {
-        const toggle = document.getElementById("navbar-toggle");
-        const links = document.getElementById("navbar-links");
-        if (toggle && links) {
-          toggle.addEventListener("click", function () {
-            links.classList.toggle("open");
-          });
-        }
-      });
-    </script>
-  </body>
+    // Navbar toggle for mobile
+    document.addEventListener("DOMContentLoaded", function () {
+      const toggle = document.getElementById("navbar-toggle");
+      const links = document.getElementById("navbar-links");
+      if (toggle && links) {
+        toggle.addEventListener("click", function () {
+          links.classList.toggle("open");
+        });
+      }
+    });
+  </script>
+</body>
+
 </html>
