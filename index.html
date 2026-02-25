@@ -578,11 +578,12 @@
               // Handle phone number that must include country code
               const formattedNumber = normalizeE164(input);
 
-              // Open WhatsApp with empty message
+              // Open WhatsApp with prefilled message
+              const message = "Hi, I was checking businesses in your area and noticed you don’t have a website yet. Today most customers first search on Google before visiting or calling, and without a website you might be losing genuine enquiries daily. I design professional websites for just ₹4,999 including domain and hosting — no yearly maintenance charges. Most developers charge at least ₹15,000 for the same. A website helps customers trust your business, see your services, location, contact details, and even message you directly. I also optimize it so you can start appearing in Google search results and attract more local customers. Let me know if you’d like to see a sample.";
               whatsappBtn.href = `https://wa.me/${formattedNumber.replace(
                 "+",
                 ""
-              )}`;
+              )}?text=${encodeURIComponent(message)}`;
               callBtn.href = `tel:${formattedNumber}`;
               emailBtn.href = "#";
             }
