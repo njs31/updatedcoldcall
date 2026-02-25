@@ -587,7 +587,15 @@
             const formattedNumber = normalizeE164(input);
 
             // Open WhatsApp with prefilled message
-            const message = "Hi, I was checking businesses in your area and noticed you don’t have a website yet. Today most customers first search on Google before visiting or calling, and without a website you might be losing genuine enquiries daily. I design professional websites for just ₹4,999 including domain and hosting — no yearly maintenance charges. Most developers charge at least ₹15,000 for the same. A website helps customers trust your business, see your services, location, contact details, and even message you directly. I also optimize it so you can start appearing in Google search results and attract more local customers. Let me know if you’d like to see a sample.";
+            const message = `Hi 👋
+
+I was checking businesses in your area and noticed you don’t have a website yet. Today most customers first search on Google before visiting or calling, and without a website you could be missing genuine enquiries every day.
+
+I design professional websites for just ₹4,999/- 💻✨ (including domain & hosting). No yearly maintenance charges. Most developers charge a minimum of ₹15,000 for the same.
+
+A website builds trust 🤝, shows your services, location, contact details, photos, and makes it easy for customers to reach you. I also optimize it for Google 🔍 so you can start getting more local customers online.
+
+If you’d like, I can share a sample and explain how it can help your business grow 📈`;
             whatsappBtn.href = `https://wa.me/${formattedNumber.replace(
               "+",
               ""
